@@ -11,7 +11,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 const HandlerDashboard = () => {
   const { consumers, handlers, addConsumer, removeConsumer } = useData();
   const [showAddModal, setShowAddModal] = useState(false);
-  const [newConsumer, setNewConsumer] = useState({ name: '', location: '', meter_id: '' });
+  const indianCities = [
+    'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 'Chennai', 'Kolkata',
+    'Surat', 'Pune', 'Jaipur', 'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane',
+    'Bhopal', 'Visakhapatnam', 'Patna', 'Vadodara', 'Ghaziabad', 'Ludhiana',
+    'Agra', 'Nashik', 'Faridabad', 'Meerut', 'Rajkot', 'Varanasi', 'Srinagar',
+    'Aurangabad', 'Dhanbad', 'Amritsar', 'Ranchi', 'Howrah', 'Jabalpur', 'Gwalior',
+    'Vijayawada', 'Jodhpur', 'Madurai', 'Raipur', 'Kota', 'Guwahati', 'Chandigarh'
+  ];
+  const [newConsumer, setNewConsumer] = useState({ name: '', location: 'Mumbai, India', meter_id: '' });
 
   // Mock handler ID for this user
   const handlerId = 'h1';
@@ -31,7 +39,7 @@ const HandlerDashboard = () => {
       total_cost: 0
     });
     setShowAddModal(false);
-    setNewConsumer({ name: '', location: '', meter_id: '' });
+    setNewConsumer({ name: '', location: 'Mumbai, India', meter_id: '' });
   };
 
   return (
@@ -116,7 +124,7 @@ const HandlerDashboard = () => {
                 <tr key={c.id} style={{ borderBottom: '1px solid var(--border-glass)' }}>
                   <td style={{ padding: '1rem' }}>
                     <div style={{ fontWeight: '600' }}>{c.name}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>New York, USA</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{(c as any).location || 'India'}</div>
                   </td>
                   <td style={{ padding: '1rem' }}>
                     <div style={{ fontSize: '0.875rem' }}>{c.unique_id}</div>
@@ -179,6 +187,19 @@ const HandlerDashboard = () => {
                       onChange={e => setNewConsumer({...newConsumer, name: e.target.value})}
                       style={{ width: '100%', padding: '0.75rem', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-glass)', borderRadius: '0.5rem', color: 'white' }} 
                     />
+                  </div>
+                  <div style={{ marginBottom: '1rem' }}>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Location (City)</label>
+                    <select
+                      required
+                      value={newConsumer.location}
+                      onChange={e => setNewConsumer({...newConsumer, location: e.target.value})}
+                      style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-dark)', border: '1px solid var(--border-glass)', borderRadius: '0.5rem', color: 'white' }}
+                    >
+                      {indianCities.map(city => (
+                        <option key={city} value={`${city}, India`} style={{ background: 'var(--bg-dark)' }}>{city}, India</option>
+                      ))}
+                    </select>
                   </div>
                   <div style={{ marginBottom: '1rem' }}>
                     <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem' }}>Meter ID</label>

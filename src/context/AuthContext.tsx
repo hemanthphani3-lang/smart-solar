@@ -41,7 +41,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       name: role.charAt(0).toUpperCase() + role.slice(1) + ' User',
       email,
       role,
-      location: 'New York, USA',
+      location: 'Hyderabad, India',
     };
     
     setUser(mockUser);

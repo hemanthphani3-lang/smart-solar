@@ -1,4 +1,4 @@
-import React from 'react';
+
 import PublicLayout from '../../layouts/PublicLayout';
 import { motion } from 'framer-motion';
 import { Zap, Shield, BarChart3, Globe, ArrowRight } from 'lucide-react';

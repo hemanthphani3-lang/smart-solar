@@ -1,11 +1,11 @@
-import React from 'react';
+
 import DashboardLayout from '../../layouts/DashboardLayout';
 import Card from '../../components/ui/Card';
 import { useData } from '../../context/DataContext';
 import { useAuth } from '../../context/AuthContext';
 import { 
   Zap, Wallet, History, Info, 
-  ArrowRight, Download, CreditCard 
+  Download, CreditCard 
 } from 'lucide-react';
 import { 
   BarChart, Bar, XAxis, YAxis, 
@@ -34,7 +34,7 @@ const ConsumerDashboard = () => {
     <DashboardLayout>
       <div style={{ marginBottom: '2rem' }}>
         <h1 style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>Your Energy Profile</h1>
-        <p style={{ color: 'var(--text-secondary)' }}>Monitoring usage for {myConsumer?.name}.</p>
+        <p style={{ color: 'var(--text-secondary)' }}>Welcome, {user?.name || myConsumer?.name}. Monitoring your energy usage.</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '1.5rem', marginBottom: '2rem' }}>

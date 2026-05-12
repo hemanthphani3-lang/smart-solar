@@ -1,4 +1,4 @@
-import React from 'react';
+
 import PublicLayout from '../../layouts/PublicLayout';
 import { motion } from 'framer-motion';
 import { Target, Lightbulb, Users, Leaf } from 'lucide-react';

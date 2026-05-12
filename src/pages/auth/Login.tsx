@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth, UserRole } from '../../context/AuthContext';
+import { useAuth, type UserRole } from '../../context/AuthContext';
 import { Sun, Shield, Zap, User, Lock, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Card from '../../components/ui/Card';

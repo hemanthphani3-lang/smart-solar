@@ -1,4 +1,4 @@
-import React from 'react';
+
 import PublicLayout from '../../layouts/PublicLayout';
 import LeafletMap from '../../components/map/LeafletMap';
 import Card from '../../components/ui/Card';

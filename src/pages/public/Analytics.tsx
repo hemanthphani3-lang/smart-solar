@@ -1,4 +1,4 @@
-import React from 'react';
+
 import PublicLayout from '../../layouts/PublicLayout';
 import Card from '../../components/ui/Card';
 import { useData } from '../../context/DataContext';
@@ -10,7 +10,7 @@ import {
 import { Activity, Zap, TrendingDown, Leaf } from 'lucide-react';
 
 const PublicAnalytics = () => {
-  const { totalGeneration, totalConsumption, handlers, consumers } = useData();
+  const { totalGeneration, totalConsumption, handlers } = useData();
 
   const networkEfficiency = ((totalConsumption / totalGeneration) * 100).toFixed(1);
   const carbonSaved = (totalGeneration * 0.4).toFixed(0); // Rough estimate: 0.4 kg CO2 per kWh
