@@ -62,52 +62,44 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return handlersList;
   };
 
-  const [handlers, setHandlers] = useState<Handler[]>(generateHandlers());
+  // Function to generate consumers for all handlers
+  const generateConsumers = (handlersList: Handler[]): Consumer[] => {
+    const firstNames = ['Arjun', 'Aditya', 'Aarav', 'Vivaan', 'Vihaan', 'Krishna', 'Sai', 'Ishaan', 'Shaurya', 'Aryan', 'Ananya', 'Diya', 'Ishani', 'Myra', 'Navya', 'Saanvi', 'Zara', 'Kavya', 'Priya', 'Riya'];
+    const lastNames = ['Sharma', 'Verma', 'Gupta', 'Patel', 'Reddy', 'Rao', 'Singh', 'Kumar', 'Joshi', 'Mehta', 'Nair', 'Pillai', 'Iyer', 'Kulkarni', 'Deshmukh', 'Banerjee', 'Chatterjee', 'Mukherjee', 'Das', 'Ghosh'];
+    
+    const consumersList: Consumer[] = [];
+    let consumerCount = 1;
 
-  const [consumers, setConsumers] = useState<Consumer[]>([
-    {
-      id: 'c1',
-      unique_id: 'CUS-AP-0001',
-      name: 'Alice Johnson',
-      location: 'Hyderabad, India',
-      handler_id: 'h1',
-      meter_id: 'MTR-0001',
-      current_usage: 125.5,
-      total_cost: 1004.0
-    },
-    {
-      id: 'c2',
-      unique_id: 'CUS-AP-0002',
-      name: 'Bob Smith',
-      location: 'Bangalore, India',
-      handler_id: 'h1',
-      meter_id: 'MTR-0002',
-      current_usage: 88.2,
-      total_cost: 705.6
-    },
-    {
-      id: 'c3',
-      unique_id: 'CUS-AP-0003',
-      name: 'Charlie Brown',
-      location: 'Mumbai, India',
-      handler_id: 'h2',
-      meter_id: 'MTR-0003',
-      current_usage: 210.0,
-      total_cost: 1680.0
-    }
-  ]);
-
-  // Update handlers with initial consumer IDs
-  useEffect(() => {
-    const updatedHandlers = [...handlers];
-    consumers.forEach(c => {
-      const handler = updatedHandlers.find(h => h.id === c.handler_id);
-      if (handler && !handler.consumers.includes(c.id)) {
-        handler.consumers.push(c.id);
+    handlersList.forEach(handler => {
+      const numConsumers = Math.floor(Math.random() * 3) + 2; // 2 to 4
+      for (let i = 0; i < numConsumers; i++) {
+        const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const city = handler.location.split(',')[0];
+        
+        const consumerId = `c${consumerCount}`;
+        consumersList.push({
+          id: consumerId,
+          unique_id: `CUS-AP-${consumerCount.toString().padStart(4, '0')}`,
+          name: `${firstName} ${lastName}`,
+          location: `${city}, India`,
+          handler_id: handler.id,
+          meter_id: `MTR-${consumerCount.toString().padStart(4, '0')}`,
+          current_usage: 50 + Math.random() * 200,
+          total_cost: 0 // Will be calculated in simulation
+        });
+        handler.consumers.push(consumerId);
+        consumerCount++;
       }
     });
-    setHandlers(updatedHandlers);
-  }, []);
+    return consumersList;
+  };
+
+  const initialHandlers = generateHandlers();
+  const initialConsumers = generateConsumers(initialHandlers);
+
+  const [handlers, setHandlers] = useState<Handler[]>(initialHandlers);
+  const [consumers, setConsumers] = useState<Consumer[]>(initialConsumers);
 
   // Real-time usage simulation
   useEffect(() => {
