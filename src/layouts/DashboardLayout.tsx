@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { 
-  Sun, LayoutDashboard, Users, Zap, 
-  BarChart3, Settings, LogOut, Bell, Search, 
+  Sun, LayoutDashboard, Users, 
+  BarChart3, LogOut, Bell, Search, 
   Menu, X, Map as MapIcon, Wallet
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import { motion, AnimatePresence } from 'framer-motion';
+
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, logout } = useAuth();

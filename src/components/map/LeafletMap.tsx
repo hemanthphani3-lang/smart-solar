@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { useData } from '../../context/DataContext';
 
@@ -49,13 +49,7 @@ const generateMockCoordinates = (count: number) => {
 
 const mockCoordinates = generateMockCoordinates(1284);
 
-const MapUpdater = ({ center }: { center: [number, number] }) => {
-  const map = useMap();
-  useEffect(() => {
-    map.setView(center);
-  }, [center, map]);
-  return null;
-};
+
 
 const LeafletMap = () => {
   const { handlers } = useData();

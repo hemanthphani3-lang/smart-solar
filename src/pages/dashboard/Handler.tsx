@@ -4,7 +4,7 @@ import Card from '../../components/ui/Card';
 import { useData } from '../../context/DataContext';
 import { 
   Users, Zap, DollarSign, Plus, 
-  Trash2, AlertCircle, Search, Filter 
+  Trash2, AlertCircle 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
